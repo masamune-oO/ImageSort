@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ImageSort"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.0")
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+config/icon="res://icon.png"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=960
+window/size/width=1280
+window/size/height=960
+
+[dotnet]
+
+project/assembly_name="test"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.521569, 0.521569, 0.521569, 1)
+environment/default_environment="res://default_env.tres"

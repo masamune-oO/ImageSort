@@ -1,0 +1,388 @@
+[gd_scene load_steps=4 format=3 uid="uid://djweho50miw3y"]
+
+[ext_resource type="Script" path="res://main.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bjahhtcfpdbr4" path="res://icon.png" id="2"]
+[ext_resource type="Theme" uid="uid://dafjb2xd23vwo" path="res://theme.tres" id="2_yge1i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1")
+
+[node name="Panel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_yge1i")
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+metadata/_edit_lock_ = true
+
+[node name="Selectable" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="Panel/GridContainer/Selectable"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/Selectable/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HFlowContainer4" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Directory" type="LineEdit" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "場所を入力"
+metadata/_edit_lock_ = true
+
+[node name="SelectDirectory" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "選択"
+metadata/_edit_lock_ = true
+
+[node name="HSeparator4" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HFlowContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "ファイルタイプ"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Extensions" type="OptionButton" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = ".JPG"
+popup/item_0/id = 0
+metadata/_edit_lock_ = true
+
+[node name="HSeparator6" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HFlowContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "分割数
+"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="NumSeparateLock" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "1"
+alignment = 0
+
+[node name="NumSeparate" type="SpinBox" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 9.0
+value = 7.0
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="StartFind" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "検索
+"
+metadata/_edit_lock_ = true
+
+[node name="ResetResult" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+disabled = true
+text = "リセット"
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HFlowContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="StartSorting" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "振り分けを開始"
+metadata/_edit_lock_ = true
+
+[node name="HSeparator5" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ReturnImageWindow" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "画像ウィンドウを元に戻す"
+metadata/_edit_lock_ = true
+
+[node name="Display" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="Panel/GridContainer/Display"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/Display/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="SelectedDir" type="HBoxContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedDir"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "選択したディレクトリ"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedDir"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="SelectedDir" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedDir"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "None"
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="SelectedNumber" type="HBoxContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedNumber"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "振り分け先"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedNumber"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="NumToDir" type="RichTextLabel" parent="Panel/GridContainer/Display/Panel/VBoxContainer/SelectedNumber"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[color=red]振り分けを開始してください[/color]"
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="DirRemain" type="HBoxContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "残り画像枚数"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="NumRemain" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain/HBoxContainer"]
+layout_mode = 2
+text = " / "
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="NumMax" type="Label" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/GridContainer/Display/Panel/VBoxContainer/DirRemain"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_lock_ = true
+
+[node name="HSeparator4" type="HSeparator" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer/PanelContainer"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="DialogContainer" type="VBoxContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer/PanelContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Window" type="Window" parent="."]
+disable_3d = true
+handle_input_locally = false
+canvas_cull_mask = 4293918721
+position = Vector2i(30, 340)
+size = Vector2i(580, 600)
+
+[node name="TextureRect" type="TextureRect" parent="Window"]
+unique_name_in_owner = true
+offset_right = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="FileDialog" type="FileDialog" parent="."]
+disable_3d = true
+title = "Open a Directory"
+position = Vector2i(37, 60)
+size = Vector2i(1074, 558)
+ok_button_text = "現在のフォルダーを選択"
+file_mode = 2
+access = 2
+show_hidden_files = true
+
+[connection signal="text_submitted" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4/Directory" to="." method="_on_directory_edit_text_submitted"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4/SelectDirectory" to="." method="_on_select_directory_pressed"]
+[connection signal="value_changed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3/NumSeparate" to="." method="_on_num_separate_box_value_changed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer/StartFind" to="." method="_on_start_find_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer/ResetResult" to="." method="_on_reset_result_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer/StartSorting" to="." method="_on_start_sorting_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer3/ReturnImageWindow" to="." method="_on_return_image_window_pressed"]
+[connection signal="size_changed" from="Window" to="." method="_on_window_size_changed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]

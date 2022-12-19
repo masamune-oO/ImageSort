@@ -1,0 +1,6 @@
+res://default_env.tres::1671308008::a52129f071fffbd20a6013a6c0edec1e::Sky,
+res://export_presets.cfg::1671361715::e16ef93599bba6baa695df88584030c0::
+res://icon.png::1671358137::08b0f02ecd0db5789d689bbfd54afdcd::CompressedTexture2D
+res://main.gd::1671351222::a4a099347dde8ced0b18c963ea3a4a92::GDScript
+res://Main.tscn::1671422910::109a7380e71f24a450da5078f0a5475c::PackedScene,Node,Control,GridContainer,PanelContainer,Panel,VBoxContainer,HSeparator,HBoxContainer,LineEdit,Button,Label,VSeparator,OptionButton,SpinBox,RichTextLabel,ProgressBar,ScrollContainer,Window,TextureRect,FileDialog
+res://theme.tres::1671422912::82b1c983dc8ddf6279dd46f1d63287b3::StyleBoxFlat,Image,FontFile,

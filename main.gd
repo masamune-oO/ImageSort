@@ -15,8 +15,10 @@ signal selected()
 @onready var _start_find_button: Button = get_node("%StartFind")
 @onready var _reset_result_button: Button = get_node("%ResetResult")
 @onready var _start_sorting_button: Button = get_node("%StartSorting")
-@onready var _scroll_container: ScrollContainer = $Panel/GridContainer/Display/Panel/VBoxContainer/PanelContainer/ScrollContainer
+@onready var _scroll_container: ScrollContainer = get_node("%ScrollContainer")
 @onready var _select_directory_button: Button = get_node("%SelectDirectory")
+@onready var _return_image_window_button: Button = get_node("%ReturnImageWindow")
+@onready var _delete_file: CheckBox = get_node("%DeleteFile")
 @onready var _image_window: Window = $Window
 
 var _img_paths: Array[String] = []
@@ -148,24 +150,28 @@ func load_external_texture(path: String) -> ImageTexture:
 
 # プロパティの表示を変更する
 func enable_set_find_property(enable: bool=true):
-	_extension.visible = enable
-	var extension_lock = get_node("%ExtensionLock")
-	extension_lock.visible = !enable
-	extension_lock.text = _extension.text
+	_extension.disabled = !enable
+	_start_find_button.disabled = !enable
 	
 	_num_separate_dir.visible = enable
 	var num_separate_lock = get_node("%NumSeparateLock")
 	num_separate_lock.visible = !enable
-	num_separate_lock.text = _num_separate_dir.text
+	num_separate_lock.text = str(_num_separate_dir.value)
 	
-	_start_find_button.disabled = !enable
 	_reset_result_button.disabled = enable
+	_delete_file.disabled = enable
+	_return_image_window_button.disabled = enable
 
 
 # プロパティリストの表示を更新する
 func _update_property_list():
 	_num_max_label.text = str(_img_paths.size())
 	_num_remain_label.text = str(_img_paths.size())
+
+
+func _set_sort_menu(enable: bool):
+	_start_sorting_button.disabled = !enable
+	_delete_file.disabled = !enable
 
 
 # ディレクトリを指定した時に呼び出される
@@ -182,6 +188,11 @@ func _on_select_directory_pressed() -> void:
 
 # 振り分け開始ボタンが押されたら
 func _on_start_sorting_pressed() -> void:
+	if _img_paths.is_empty():
+		_add_message("対象のパスがありません")
+		_is_sort_started = false
+		return
+	
 	_is_sort_started = true
 	_num_to_dir_label.text = "[color=red]数字キーを押してください[/color]"
 	_num_max_label.text = str(_img_paths.size())
@@ -189,6 +200,7 @@ func _on_start_sorting_pressed() -> void:
 	get_viewport().gui_release_focus()
 	_start_sorting_button.disabled = true
 	_select_directory_button.disabled = true
+	_reset_result_button.disabled = true
 	
 	var num_dir := roundi(_num_separate_dir.value)
 	var dir := DirAccess.open(_dir_path)
@@ -198,9 +210,15 @@ func _on_start_sorting_pressed() -> void:
 		if dir.make_dir(str(i)) == OK:
 			_add_message("Created directory %s" % dir.get_current_dir() + "/" + str(i))
 		else: 
-			_add_message("[color=red]Failed creating directory[/color] %s" % dir.get_current_dir() + "/" + str(i), true)
+			_add_message("[color=red]Failed to create directory[/color] %s" % dir.get_current_dir() + "/" + str(i), true)
 	
 	var size = _img_paths.size()
+	var delete_file = _delete_file.button_pressed
+	
+	_set_sort_menu(false)
+	
+	_image_window.show()
+	_image_window.always_on_top = true
 	
 	# ソート作業開始
 	while(true):
@@ -208,6 +226,7 @@ func _on_start_sorting_pressed() -> void:
 		if img_path != null:
 			var texture = load_external_texture(img_path)
 			_add_message("[color=yellow]Sorting:[/color] %s" % img_path, true)
+			$Window.title = img_path
 			if texture != null:
 				_texture_rect.texture = texture
 				# キーが押されるまで待つ
@@ -215,13 +234,12 @@ func _on_start_sorting_pressed() -> void:
 				_texture_rect.texture = null
 				var target_dir = dir.get_current_dir() + "/" + str(_num_to_dir) + "/" + img_path.get_file()
 				# コピーに成功したら
-				img_path
 				if DirAccess.copy_absolute(img_path, target_dir) == OK:
-					_add_message(
-						"[color=green]Copied:[/color] %s/[color=green]%s[/color]" % [target_dir.get_base_dir(), img_path.get_file()], true)
+					_add_message("[color=green]Copied:[/color] %s/[color=green]%s[/color]" % [target_dir.get_base_dir(), img_path.get_file()], true)
 					# 元のファイルを削除する
-					if DirAccess.remove_absolute(img_path) == OK:
-						_add_message("[color=red]Removed:[/color] %s[color=red][s]/%s[/s][/color]" % [img_path.get_base_dir(), img_path.get_file()], true)
+					if delete_file:
+						if DirAccess.remove_absolute(img_path) == OK:
+							_add_message("[color=red]Removed:[/color] %s[color=red][s]/%s[/s][/color]" % [img_path.get_base_dir(), img_path.get_file()], true)
 				# 失敗したら
 				else:
 					_add_message("[color=red]Failed to copy:[/color] %s%s" % [img_path, target_dir], true)
@@ -229,9 +247,11 @@ func _on_start_sorting_pressed() -> void:
 			_progress_bar.ratio = float(size - _img_paths.size()) / size
 		else:
 			break
-		
-	_start_sorting_button.disabled = false
-	_select_directory_button.disabled = false
+	
+	_is_sort_started = false
+	_image_window.always_on_top = false
+	_image_window.hide()
+	enable_set_find_property(true)
 
 
 # 分割数入力フォームに入力されてenterが押されたら
@@ -270,6 +290,7 @@ func _on_start_find_pressed() -> void:
 		# 検索結果が1件でもあれば
 		if not _img_paths.is_empty():
 			_add_message("[color=yellow]検索結果: %d (対象: %s)\n at: %s[/color]" % [_img_paths.size(), extension, _dir_path], true)
+			_set_sort_menu(true)
 			enable_set_find_property(false)
 		# 1つもなかったら
 		else:
@@ -309,7 +330,6 @@ func _on_reset_result_pressed() -> void:
 # 分割する数が変更されたら
 func _on_num_separate_box_value_changed(value: float) -> void:
 	get_viewport().gui_release_focus()
-	var num_separate = get_node_or_null("%NumSeparate") as LineEdit
 	var num = roundf(value)
 	if num > 0 and num < 10:
-		_num_separate = num
+		_num_separate = int(num)

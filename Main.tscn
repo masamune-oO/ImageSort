@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://djweho50miw3y"]
 
 [ext_resource type="Script" path="res://main.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bjahhtcfpdbr4" path="res://icon.png" id="2"]
 [ext_resource type="Theme" uid="uid://dafjb2xd23vwo" path="res://theme.tres" id="2_yge1i"]
+[ext_resource type="Texture2D" uid="uid://uvexv8evaayy" path="res://icon.svg" id="3_j2fbn"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1")
@@ -36,7 +36,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/Selectable/Panel"]
+[node name="Menu" type="VBoxContainer" parent="Panel/GridContainer/Selectable/Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -49,48 +49,56 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="Search" type="VBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
+layout_mode = 2
+text = "ソートするファイルを検索する
+"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HFlowContainer4" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HFlowContainer4" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Directory" type="LineEdit" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4"]
+[node name="Directory" type="LineEdit" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "場所を入力"
 metadata/_edit_lock_ = true
 
-[node name="SelectDirectory" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4"]
+[node name="SelectDirectory" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer4"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "選択"
 metadata/_edit_lock_ = true
 
-[node name="HSeparator4" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HFlowContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HFlowContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "ファイルタイプ"
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer2"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Extensions" type="OptionButton" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer2"]
+[node name="Extensions" type="OptionButton" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -100,15 +108,15 @@ popup/item_0/text = ".JPG"
 popup/item_0/id = 0
 metadata/_edit_lock_ = true
 
-[node name="HSeparator6" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HSeparator6" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HFlowContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HFlowContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "分割数
@@ -116,11 +124,11 @@ text = "分割数
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+[node name="VSeparator" type="VSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer3"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="NumSeparateLock" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+[node name="NumSeparateLock" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer3"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -129,7 +137,7 @@ disabled = true
 text = "1"
 alignment = 0
 
-[node name="NumSeparate" type="SpinBox" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3"]
+[node name="NumSeparate" type="SpinBox" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -137,15 +145,15 @@ min_value = 1.0
 max_value = 9.0
 value = 7.0
 
-[node name="HSeparator3" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Search"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="StartFind" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer"]
+[node name="StartFind" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -154,7 +162,7 @@ text = "検索
 "
 metadata/_edit_lock_ = true
 
-[node name="ResetResult" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer"]
+[node name="ResetResult" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Search/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -163,23 +171,48 @@ disabled = true
 text = "リセット"
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="Sort" type="VBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HSeparator2" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort/HBoxContainer2"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HFlowContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
+layout_mode = 2
+text = "ソートメニュー
+（振り分け開始時に、選択したディレクトリの下に新しいディレクトリが作られます）"
+metadata/_edit_lock_ = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="StartSorting" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer"]
+[node name="HSeparator4" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="DeleteFile" type="CheckBox" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+button_pressed = true
+text = "元のファイルを削除する"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HFlowContainer" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="StartSorting" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -187,18 +220,20 @@ disabled = true
 text = "振り分けを開始"
 metadata/_edit_lock_ = true
 
-[node name="HSeparator5" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="ReturnImageWindow" type="Button" parent="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer3"]
+[node name="ReturnImageWindow" type="Button" parent="Panel/GridContainer/Selectable/Panel/Menu/Sort/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-text = "画像ウィンドウを元に戻す"
+disabled = true
+text = "ウィンドウを元に戻す"
 metadata/_edit_lock_ = true
 
 [node name="Display" type="PanelContainer" parent="Panel/GridContainer"]
@@ -340,6 +375,7 @@ size_flags_vertical = 3
 metadata/_edit_lock_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/GridContainer/Display/Panel/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 follow_focus = true
 vertical_scroll_mode = 2
@@ -357,13 +393,14 @@ handle_input_locally = false
 canvas_cull_mask = 4293918721
 position = Vector2i(30, 340)
 size = Vector2i(580, 600)
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Window"]
 unique_name_in_owner = true
 offset_right = 212.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2")
+texture = ExtResource("3_j2fbn")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -377,12 +414,12 @@ file_mode = 2
 access = 2
 show_hidden_files = true
 
-[connection signal="text_submitted" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4/Directory" to="." method="_on_directory_edit_text_submitted"]
-[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer4/SelectDirectory" to="." method="_on_select_directory_pressed"]
-[connection signal="value_changed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer3/NumSeparate" to="." method="_on_num_separate_box_value_changed"]
-[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer/StartFind" to="." method="_on_start_find_pressed"]
-[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer/ResetResult" to="." method="_on_reset_result_pressed"]
-[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HFlowContainer/StartSorting" to="." method="_on_start_sorting_pressed"]
-[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/VBoxContainer/HBoxContainer3/ReturnImageWindow" to="." method="_on_return_image_window_pressed"]
+[connection signal="text_submitted" from="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer4/Directory" to="." method="_on_directory_edit_text_submitted"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer4/SelectDirectory" to="." method="_on_select_directory_pressed"]
+[connection signal="value_changed" from="Panel/GridContainer/Selectable/Panel/Menu/Search/HFlowContainer3/NumSeparate" to="." method="_on_num_separate_box_value_changed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/Menu/Search/HBoxContainer/StartFind" to="." method="_on_start_find_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/Menu/Search/HBoxContainer/ResetResult" to="." method="_on_reset_result_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/Menu/Sort/HFlowContainer/StartSorting" to="." method="_on_start_sorting_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Selectable/Panel/Menu/Sort/HBoxContainer3/ReturnImageWindow" to="." method="_on_return_image_window_pressed"]
 [connection signal="size_changed" from="Window" to="." method="_on_window_size_changed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
